@@ -40,7 +40,7 @@ public class JsonRpcApplicationTests {
         MockHttpServletRequestBuilder servletRequestBuilder = post("/appointmentService")
                 .content(jsonRpcRequest("openSlotRequest", openSlotRequestParameter()))
                 .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_XML);
+                .accept(MediaType.APPLICATION_JSON);
         // action & print
         mockMvc.perform(servletRequestBuilder).andDo(MockMvcResultHandlers.print())
                 // verify
@@ -57,7 +57,7 @@ public class JsonRpcApplicationTests {
         MockHttpServletRequestBuilder servletRequestBuilder = post("/appointmentService")
                 .content(jsonRpcRequest("appointmentRequest", appointmentRequestParameter()))
                 .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_XML);
+                .accept(MediaType.APPLICATION_JSON);
         // action & print
         mockMvc.perform(servletRequestBuilder).andDo(MockMvcResultHandlers.print())
                 // verify
@@ -66,6 +66,23 @@ public class JsonRpcApplicationTests {
                 .andExpect(jsonPath("$.result.slot.end").value("1450"))
                 .andExpect(jsonPath("$.result.slot.doctor").value("mjones"))
                 .andExpect(jsonPath("$.result.patient.id").value("jsmith"))
+        ;
+    }
+
+    @Test
+    public void slotNotAvailableException() throws Exception {
+        // request
+        MockHttpServletRequestBuilder servletRequestBuilder = post("/appointmentService")
+                .content(jsonRpcRequest("appointmentRequest", appointmentRequestErrorParameter()))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+        // action & print
+        mockMvc.perform(servletRequestBuilder).andDo(MockMvcResultHandlers.print())
+                // verify
+                .andExpect(jsonPath("$.result").doesNotExist())
+                .andExpect(jsonPath("$.error").exists())
+                .andExpect(jsonPath("$.error.code").value(404))
+                .andExpect(jsonPath("$.error.message").value("Slot not available"))
         ;
     }
 
@@ -84,6 +101,14 @@ public class JsonRpcApplicationTests {
     private Map<String, Object> appointmentRequestParameter() {
         Map<String, Object> parameter = new HashMap<>();
         parameter.put("slot", Slot.of(LocalTime.of(14, 0), LocalTime.of(14,50), "mjones"));
+        parameter.put("patient", Patient.of("jsmith"));
+        return parameter;
+    }
+
+    private Map<String, Object> appointmentRequestErrorParameter() {
+        Map<String, Object> parameter = new HashMap<>();
+        // doctor antop is error
+        parameter.put("slot", Slot.of(LocalTime.of(14, 0), LocalTime.of(14,50), "antop"));
         parameter.put("patient", Patient.of("jsmith"));
         return parameter;
     }

@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>org.antop</groupId>
-    <artifactId>level-0-json-rpc</artifactId>
+    <artifactId>json-rpc-demo</artifactId>
     <version>1.0.0</version>
 
-    <name>level-0-json-rpc</name>
+    <name>json-rpc-demo</name>
     <description>JSON-RPC demo project</description>
 
     <properties>
