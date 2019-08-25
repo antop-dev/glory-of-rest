@@ -44,4 +44,18 @@ public class AppointmentServiceTest extends XmlRpcApplicationTests {
         assertThat(appointment.getSlot().getDoctor(), equalTo(slot.getDoctor()));
         assertThat(appointment.getPatient().getId(), equalTo(patient.getId()));
     }
+    @Test
+    public void appointmentRequestError() throws MalformedURLException {
+        AppointmentService service = getDynamicProxy(AppointmentService.class);
+        // request
+        Slot slot = Slot.of(LocalTime.of(16, 0), LocalTime.of(16, 50), "antop");
+        Patient patient = Patient.of("jsmith");
+        Appointment appointment = service.appointmentRequest(slot, patient);
+
+        assertThat(appointment.getSlot().getStart(), equalTo(slot.getStart()));
+        assertThat(appointment.getSlot().getEnd(), equalTo(slot.getEnd()));
+        assertThat(appointment.getSlot().getDoctor(), equalTo(slot.getDoctor()));
+        assertThat(appointment.getPatient().getId(), equalTo(patient.getId()));
+    }
+
 }

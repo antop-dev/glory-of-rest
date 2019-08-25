@@ -1,5 +1,6 @@
 package org.antop.xmlrpc.service;
 
+import org.antop.xmlrpc.exception.SlotNotAvailableException;
 import org.antop.xmlrpc.metadata.XmlRpc;
 import org.antop.xmlrpc.model.Appointment;
 import org.antop.xmlrpc.model.Patient;
@@ -23,6 +24,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public Appointment appointmentRequest(Slot slot, Patient patient) {
+        if (slot.getDoctor().equals("antop")) {
+            throw new SlotNotAvailableException();
+        }
         Appointment appointment = Appointment.of(slot, patient);
         return appointment;
     }

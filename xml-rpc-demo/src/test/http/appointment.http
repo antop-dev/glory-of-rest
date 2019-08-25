@@ -51,3 +51,29 @@ Content-Type: text/xml
 </methodCall>
 
 ###
+
+POST http://localhost:8012/xmlrpc
+Content-Type: text/xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<methodCall xmlns:ex="http://ws.apache.org/xmlrpc/namespaces/extensions">
+    <methodName>org.antop.xmlrpc.service.AppointmentService.appointmentRequest</methodName>
+    <params>
+        <param>
+            <value>
+                <ex:serializable>
+                    rO0ABXNyABtvcmcuYW50b3AueG1scnBjLm1vZGVsLlNsb3SKqAx35vVeQwIAA0wABmRvY3RvcnQAEkxqYXZhL2xhbmcvU3RyaW5nO0wAA2VuZHQAFUxqYXZhL3RpbWUvTG9jYWxUaW1lO0wABXN0YXJ0cQB+AAJ4cHQABWFudG9wc3IADWphdmEudGltZS5TZXKVXYS6GyJIsgwAAHhwdwMEEM14c3EAfgAFdwIE73g=
+                </ex:serializable>
+            </value>
+        </param>
+        <param>
+            <value>
+                <ex:serializable>
+                    rO0ABXNyAB5vcmcuYW50b3AueG1scnBjLm1vZGVsLlBhdGllbnTemVxtdsaxqAIAAUwAAmlkdAASTGphdmEvbGFuZy9TdHJpbmc7eHB0AAZqc21pdGg=
+                </ex:serializable>
+            </value>
+        </param>
+    </params>
+</methodCall>
+
+###
