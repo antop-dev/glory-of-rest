@@ -1,0 +1,60 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://antop.org/appointment-service"
+           targetNamespace="http://antop.org/appointment-service" elementFormDefault="qualified">
+
+    <xs:element name="openSlotListRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="date" type="xs:date"/>
+                <xs:element name="doctor" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="openSlotListResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="slot" type="tns:slot" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="slot">
+        <xs:sequence>
+            <xs:element name="start" type="xs:time"/>
+            <xs:element name="end" type="xs:time"/>
+            <xs:element name="doctor" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="patient">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="appointment">
+        <xs:sequence>
+            <xs:element name="slot" type="tns:slot" />
+            <xs:element name="patient" type="tns:patient" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="appointmentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="slot" type="tns:slot" />
+                <xs:element name="patient" type="tns:patient" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="appointmentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="slot" type="tns:slot" />
+                <xs:element name="patient" type="tns:patient" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

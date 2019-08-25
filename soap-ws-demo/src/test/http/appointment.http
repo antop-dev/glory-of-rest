@@ -1,0 +1,64 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection) or
+# paste cURL into the file and request will be converted to HTTP Request format.
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+POST http://localhost:8013/ws/appointment
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:app="http://antop.org/appointment-service">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <app:openSlotListRequest>
+            <app:date>2019-01-02</app:date>
+            <app:doctor>mjones</app:doctor>
+        </app:openSlotListRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+###
+
+POST http://localhost:8013/ws/appointment
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:app="http://antop.org/appointment-service">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <app:appointmentRequest>
+            <app:slot>
+                <app:start>1400</app:start>
+                <app:end>1450</app:end>
+                <app:doctor>mjones</app:doctor>
+            </app:slot>
+            <app:patient>
+                <app:id>jsmith</app:id>
+            </app:patient>
+        </app:appointmentRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+###
+
+POST http://localhost:8013/ws/appointment
+Content-Type: text/xml
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:app="http://antop.org/appointment-service">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <app:appointmentRequest>
+            <app:slot>
+                <app:start>1400</app:start>
+                <app:end>1450</app:end>
+                <app:doctor>antop</app:doctor>
+            </app:slot>
+            <app:patient>
+                <app:id>jsmith</app:id>
+            </app:patient>
+        </app:appointmentRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+###
