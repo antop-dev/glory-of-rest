@@ -2,7 +2,6 @@ package org.antop.xmlrpc.service;
 
 import org.antop.xmlrpc.XmlRpcApplicationTests;
 import org.apache.xmlrpc.client.XmlRpcClient;
-import org.apache.xmlrpc.client.util.ClientFactory;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -14,7 +13,7 @@ public class CalculatorServiceTest extends XmlRpcApplicationTests {
     public void addRegular() throws Exception {
         XmlRpcClient client = getXmlRpcClient();
         // make the a regular call
-        Object[] params = new Object[]{new Integer(2), new Integer(3)};
+        Object[] params = new Object[]{2, 3};
         Integer sum = (Integer) client.execute("Calculator.add", params);
         // verify
         assertThat(sum, equalTo(5));
@@ -32,7 +31,7 @@ public class CalculatorServiceTest extends XmlRpcApplicationTests {
     public void subtractRegular() throws Exception {
         XmlRpcClient client = getXmlRpcClient();
         // make the a regular call
-        Object[] params = new Object[]{new Integer(2), new Integer(3)};
+        Object[] params = new Object[]{2, 3};
         Integer result = (Integer) client.execute("Calculator.subtract", params);
         // verify
         assertThat(result, equalTo(-1));

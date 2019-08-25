@@ -27,8 +27,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         if (slot.getDoctor().equals("antop")) {
             throw new SlotNotAvailableException();
         }
-        Appointment appointment = Appointment.of(slot, patient);
-        return appointment;
+        return Appointment.of(slot, patient);
     }
 
 }

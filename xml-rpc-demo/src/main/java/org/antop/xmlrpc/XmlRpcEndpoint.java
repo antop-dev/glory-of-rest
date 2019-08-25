@@ -3,18 +3,13 @@ package org.antop.xmlrpc;
 import lombok.extern.slf4j.Slf4j;
 import org.antop.xmlrpc.metadata.XmlRpc;
 import org.apache.xmlrpc.XmlRpcException;
-import org.apache.xmlrpc.XmlRpcHandler;
 import org.apache.xmlrpc.server.PropertyHandlerMapping;
-import org.apache.xmlrpc.server.XmlRpcNoSuchHandlerException;
 import org.apache.xmlrpc.server.XmlRpcServerConfigImpl;
 import org.apache.xmlrpc.webserver.XmlRpcServletServer;
 import org.reflections.Reflections;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,12 +18,9 @@ import java.io.IOException;
 @Slf4j
 @Controller
 public class XmlRpcEndpoint {
-    @Value("${xmlrpc.scan-package}")
-    private String scanPackage = getClass().getPackage().getName();
-    private XmlRpcServletServer xmlRpcServer;
+    private final XmlRpcServletServer xmlRpcServer;
 
-    @PostConstruct
-    public void init() throws XmlRpcException {
+    public XmlRpcEndpoint(XmlRpcProperties xmlRpcProperties) throws XmlRpcException {
         xmlRpcServer = new XmlRpcServletServer();
 
         XmlRpcServerConfigImpl serverConfig = (XmlRpcServerConfigImpl) xmlRpcServer.getConfig();
@@ -38,8 +30,8 @@ public class XmlRpcEndpoint {
         serverConfig.setBasicEncoding(XmlRpcServerConfigImpl.UTF8_ENCODING);
 
         PropertyHandlerMapping handlerMapping = new PropertyHandlerMapping();
-        log.debug("scan XML-RPC component in {}", scanPackage);
-        Reflections reflections = new Reflections(scanPackage);
+        log.debug("scan XML-RPC component in {}", xmlRpcProperties.getScanPackage());
+        Reflections reflections = new Reflections(xmlRpcProperties.getScanPackage());
         for (Class<?> cl : reflections.getTypesAnnotatedWith(XmlRpc.class)) {
             XmlRpc xmlRpc = cl.getAnnotation(XmlRpc.class);
 

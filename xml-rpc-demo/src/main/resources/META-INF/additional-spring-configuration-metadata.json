@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "xmlrpc.scan-package",
+      "type": "java.lang.String",
+      "description": "@XmlRpc 애노테이션을 스캔할 패키지."
+    }
+  ]
+}
