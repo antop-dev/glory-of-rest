@@ -4,9 +4,7 @@ import org.antop.appointment_service.*;
 import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -68,9 +66,6 @@ public class AppointmentTest extends WebServiceGatewaySupport {
         assertThat(response.getSlot().getEnd(), equalTo(slot.getEnd()));
         assertThat(response.getPatient().getId(), equalTo(patient.getId()));
     }
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void appointmentError() {
