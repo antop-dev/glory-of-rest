@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.antop</groupId>
-    <artifactId>spring-http</artifactId>
+    <artifactId>spring-http-demo</artifactId>
     <version>1.0.0</version>
-    <name>spring-http</name>
+    <name>spring-http-demo</name>
     <description>Spring HTTP invoker demo project</description>
 
     <properties>
