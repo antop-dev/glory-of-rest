@@ -53,7 +53,6 @@ public class AppointmentEndpoint {
                 AppointmentRequest request = (AppointmentRequest) unmarshaller.unmarshal(reader);
                 return slotService.appointment(request);
             } catch (Exception e) {
-                e.printStackTrace();
                 return new AppointmentRequestFailure(e.getMessage());
             }
         }

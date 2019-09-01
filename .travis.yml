@@ -1,0 +1,30 @@
+language: java
+
+dist: trusty
+
+addons:
+  sonarcloud:
+    organization: antop-dev-github
+
+jdk:
+  - openjdk8
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - $HOME/.m2
+
+install:
+  - mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+script:
+  - mvn clean package jacoco:report
+
+after_success:
+  - mvn sonar:sonar -Dsonar.projectKey=antop-dev_glory-of-rest
+
+notifications:
+  email: false

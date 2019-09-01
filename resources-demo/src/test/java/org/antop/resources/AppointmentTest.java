@@ -26,10 +26,10 @@ public class AppointmentTest {
                 post("/doctors/antop")
                         .accept(MediaType.APPLICATION_XML)
                         .contentType(MediaType.APPLICATION_XML)
-                        .content("<operation date=\"2019-08-01\"/>")
+                        .content("<someOperation date=\"2019-08-01\"/>")
         )
                 .andDo(print())
-                .andExpect(xpath("//error/@message").string("non operation operation"))
+                .andExpect(xpath("//error/@message").string("Not found operation someOperation"))
         ;
     }
 

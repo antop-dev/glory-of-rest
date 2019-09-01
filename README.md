@@ -46,7 +46,7 @@ Demo
 Demo
 
 * [hateoas-demo](./hateoas-demo)
-* [spring-rest-demo](./spring-data-rest)
+* [spring-rest-demo](./spring-data-rest-demo)
 
 ## Reference
 
