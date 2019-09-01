@@ -1,3 +1,15 @@
+![](https://img.shields.io/github/issues/antop-dev/glory-of-rest.svg)
+![](https://img.shields.io/github/forks/antop-dev/glory-of-rest.svg)
+![](https://img.shields.io/github/stars/antop-dev/glory-of-rest.svg)
+![](https://img.shields.io/github/license/antop-dev/glory-of-rest.svg)
+[![Build Status](https://travis-ci.com/antop-dev/glory-of-rest.svg?branch=master)](https://travis-ci.com/antop-dev/glory-of-rest)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=antop-dev_glory-of-rest&metric=alert_status)](https://sonarcloud.io/dashboard?id=antop-dev_glory-of-rest)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=antop-dev_glory-of-rest&metric=coverage)](https://sonarcloud.io/dashboard?id=antop-dev_glory-of-rest)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=antop-dev_glory-of-rest&metric=bugs)](https://sonarcloud.io/dashboard?id=antop-dev_glory-of-rest)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=antop-dev_glory-of-rest&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=antop-dev_glory-of-rest)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=antop-dev_glory-of-rest&metric=code_smells)](https://sonarcloud.io/dashboard?id=antop-dev_glory-of-rest)
+
+
 # REST의 영광을 향한 단계들
 
 ![Imgur](https://i.imgur.com/933vXkO.png)
