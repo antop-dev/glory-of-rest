@@ -1,9 +1,11 @@
 package org.antop.xmlrpc.service;
 
 import org.antop.xmlrpc.XmlRpcApplicationTests;
+import org.antop.xmlrpc.exception.SlotNotAvailableException;
 import org.antop.xmlrpc.model.Appointment;
 import org.antop.xmlrpc.model.Patient;
 import org.antop.xmlrpc.model.Slot;
+import org.apache.xmlrpc.common.XmlRpcInvocationException;
 import org.junit.Test;
 
 import java.net.MalformedURLException;
@@ -44,7 +46,8 @@ public class AppointmentServiceTest extends XmlRpcApplicationTests {
         assertThat(appointment.getSlot().getDoctor(), equalTo(slot.getDoctor()));
         assertThat(appointment.getPatient().getId(), equalTo(patient.getId()));
     }
-    @Test
+
+    @Test(expected = SlotNotAvailableException.class)
     public void appointmentRequestError() throws MalformedURLException {
         AppointmentService service = getDynamicProxy(AppointmentService.class);
         // request
@@ -52,10 +55,7 @@ public class AppointmentServiceTest extends XmlRpcApplicationTests {
         Patient patient = Patient.of("jsmith");
         Appointment appointment = service.appointmentRequest(slot, patient);
 
-        assertThat(appointment.getSlot().getStart(), equalTo(slot.getStart()));
-        assertThat(appointment.getSlot().getEnd(), equalTo(slot.getEnd()));
-        assertThat(appointment.getSlot().getDoctor(), equalTo(slot.getDoctor()));
-        assertThat(appointment.getPatient().getId(), equalTo(patient.getId()));
+        System.out.println(appointment);
     }
 
 }
