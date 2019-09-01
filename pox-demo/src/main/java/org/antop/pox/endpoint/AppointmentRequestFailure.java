@@ -16,6 +16,9 @@ public class AppointmentRequestFailure extends AppointmentRequest {
     @XmlElement(name = "reason")
     private String reason;
 
+    public AppointmentRequestFailure() {
+    }
+
     public AppointmentRequestFailure(String reason) {
         this.reason = reason;
     }
