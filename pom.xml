@@ -23,7 +23,7 @@
         <!-- level 2 -->
         <module>verbs-demo</module>
         <!-- level 3 -->
-<!--        <module>hateoas-demo</module>-->
+        <module>hateoas-demo</module>
 <!--        <module>spring-data-rest-demo</module>-->
     </modules>
 
