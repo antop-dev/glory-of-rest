@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AppointmentTest {
+public class ResourcesAppointmentTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -44,7 +44,7 @@ public class AppointmentTest {
                         .content("<openSlotListRequest date=\"2019-08-01\"/>")
         )
                 .andDo(print())
-                .andExpect(xpath("count(//openSlotList/slot)").number(9.0))
+                .andExpect(xpath("//openSlotList/slot").nodeCount(9))
                 .andExpect(xpath("//openSlotList/slot[1]/@start").string("0900"))
                 .andExpect(xpath("//openSlotList/slot[1]/@end").string("0940"))
                 .andExpect(xpath("//openSlotList/slot[1]/@doctor").string(doctor))

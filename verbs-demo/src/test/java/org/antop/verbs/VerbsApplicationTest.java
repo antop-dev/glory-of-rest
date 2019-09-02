@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class DoctorControllerTest {
+public class VerbsApplicationTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -35,7 +35,7 @@ public class DoctorControllerTest {
         mockMvc
                 .perform(builder)
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(xpath("count(//openSlotList/slot)").number(2.0))
+                .andExpect(xpath("//openSlotList/slot").nodeCount(2))
                 .andExpect(xpath("//openSlotList/slot[1]/@id").string("1234"))
                 .andExpect(xpath("//openSlotList/slot[1]/@start").string("1400"))
                 .andExpect(xpath("//openSlotList/slot[1]/@end").string("1450"))

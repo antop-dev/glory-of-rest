@@ -5,7 +5,6 @@ import org.antop.xmlrpc.exception.SlotNotAvailableException;
 import org.antop.xmlrpc.model.Appointment;
 import org.antop.xmlrpc.model.Patient;
 import org.antop.xmlrpc.model.Slot;
-import org.apache.xmlrpc.common.XmlRpcInvocationException;
 import org.junit.Test;
 
 import java.net.MalformedURLException;
@@ -53,9 +52,7 @@ public class AppointmentServiceTest extends XmlRpcApplicationTests {
         // request
         Slot slot = Slot.of(LocalTime.of(16, 0), LocalTime.of(16, 50), "antop");
         Patient patient = Patient.of("jsmith");
-        Appointment appointment = service.appointmentRequest(slot, patient);
-
-        System.out.println(appointment);
+        service.appointmentRequest(slot, patient);
     }
 
 }
