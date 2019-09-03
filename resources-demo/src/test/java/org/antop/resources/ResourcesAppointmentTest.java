@@ -44,17 +44,19 @@ public class ResourcesAppointmentTest {
                         .content("<openSlotListRequest date=\"2019-08-01\"/>")
         )
                 .andDo(print())
-                .andExpect(xpath("//openSlotList/slot").nodeCount(9))
-                .andExpect(xpath("//openSlotList/slot[1]/@start").string("0900"))
-                .andExpect(xpath("//openSlotList/slot[1]/@end").string("0940"))
+                .andExpect(xpath("//openSlotList/slot").nodeCount(2))
+                .andExpect(xpath("//openSlotList/slot[1]/@start").string("1400"))
+                .andExpect(xpath("//openSlotList/slot[1]/@end").string("1450"))
                 .andExpect(xpath("//openSlotList/slot[1]/@doctor").string(doctor))
         ;
     }
 
     @Test
     public void appointmentRequest() throws Exception {
+        int slotId = 1234;
+
         mockMvc.perform(
-                post("/slots/1234")
+                post("/slots/" + 1234)
                         .accept(MediaType.APPLICATION_XML)
                         .contentType(MediaType.APPLICATION_XML)
                         .content("<appointmentRequest>\n" +
@@ -62,9 +64,9 @@ public class ResourcesAppointmentTest {
                                 "</appointmentRequest>")
         )
                 .andDo(print())
-                .andExpect(xpath("//appointment/slot/@id").string("2"))
-                .andExpect(xpath("//appointment/slot/@start").string("1100"))
-                .andExpect(xpath("//appointment/slot/@end").string("1140"))
+                .andExpect(xpath("//appointment/slot/@id").string(1234 + ""))
+                .andExpect(xpath("//appointment/slot/@start").string("1400"))
+                .andExpect(xpath("//appointment/slot/@end").string("1450"))
                 .andExpect(xpath("//appointment/patient/@id").string("jsmith"))
         ;
     }
