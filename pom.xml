@@ -24,6 +24,7 @@
         <module>verbs-demo</module>
         <!-- level 3 -->
         <module>hateoas-demo</module>
+        <module>bank-api-demo</module>
 <!--        <module>spring-data-rest-demo</module>-->
     </modules>
 

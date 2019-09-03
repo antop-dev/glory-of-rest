@@ -3,8 +3,6 @@ dist: trusty
 addons:
   sonarcloud:
     organization: antop-dev-github
-    token:
-      secure: "IzFuAggAjOl2ojfycLq2PmvW4N6N6eA/hn+c0QuU+9hme91biFGEbV9/sNRTvE+INI5azblcrY1hDNIhLtjzXPTPNr9I8x5spQ4LGOYN5V+vd0aZfYSxxNv5vMnQw/P9lrWx8tssYxsvBM4pWXB+T4LWrSCJwN1hsF42iBixibVwrocYTY5jLKjbGfuOdCiWz7wxLQb1+5CNjx6osN9Dp1LrTNz/R0bs384E2YM0ooMkr5jWdA75wvfOVoOjoO0vMOU1jYz8156hla8vVV2jb7b8zWwQn6p888B2bZuBb+fTmwYA/Gg4YnqK9wpvBY/f2BiWxJSta9KpaLHeoZwTu/eKlw1mudTKkEnFb0VGbM+zSELWEAV3eg/ujXT66cfHlg/sgszf6mQAav8WDB4wOWtMdRlwEfYJx9EuORqANekFUwt/y9GT+JnV+QeqL8ovM1jA9ltxdLOp7iN1McbW5fiFcDQLr9RKCCwkhEaANA8ZX0Hs1Hv53E50fbyndD7a+9kklbsMmygfrT36veyIJbr9iN6RgP5MGu2idNWrixJLK8//DPkJbK1Dw+Lpv8/pkSvkRlpRE50RPaT8U9lGpSc4RFxXOoVur8CmSVhgyZ2pnaWA/rJqcm7Fo19LtPfuuq2qV9JLAZANaWFwoNIX9erLDAoz9G1oPlmIiUi+4cU="
 jdk:
   - openjdk8
 branches:
