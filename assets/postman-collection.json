@@ -1,0 +1,915 @@
+{
+	"info": {
+		"_postman_id": "4d5a6d22-c573-4483-9643-f693aecaffb2",
+		"name": "glory-of-rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pox-demo",
+			"item": [
+				{
+					"name": "openSlotListRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<openSlotRequest date=\"2010-01-04\" doctor=\"mjones\"/>"
+						},
+						"url": {
+							"raw": "http://localhost:8000//appointmentService",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"",
+								"appointmentService"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<appointmentRequest>\n    <slot doctor=\"mjones\" start=\"1400\" end=\"1450\"/>\n    <patient id=\"jsmith\"/>\n</appointmentRequest>"
+						},
+						"url": {
+							"raw": "http://localhost:8000//appointmentService",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"",
+								"appointmentService"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequestFailure",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<appointmentRequest>\n    <slot doctor=\"antop\" start=\"1400\" end=\"1450\"/>\n    <patient id=\"jsmith\"/>\n</appointmentRequest>"
+						},
+						"url": {
+							"raw": "http://localhost:8000//appointmentService",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"",
+								"appointmentService"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6553ec33-b06d-4f36-9a28-4302e5020350",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "fec37745-2649-4be1-9a76-e2bfc8bda47c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "json-rpc-demo",
+			"item": [
+				{
+					"name": "openSlotListRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"jsonrpc\": \"2.0\",\r\n  \"id\": 5,\r\n  \"method\": \"openSlotRequest\",\r\n  \"params\": {\r\n    \"date\": \"2019-08-24\",\r\n    \"doctor\": \"jsmith\"\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8011/appointmentService",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8011",
+							"path": [
+								"appointmentService"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"jsonrpc\": \"2.0\",\r\n  \"id\": 2,\r\n  \"method\": \"appointmentRequest\",\r\n  \"params\": {\r\n    \"patient\": {\r\n      \"id\": \"jsmith\"\r\n    },\r\n    \"slot\": {\r\n      \"start\": \"1400\",\r\n      \"end\": \"1450\",\r\n      \"doctor\": \"mjones\"\r\n    }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8011/appointmentService",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8011",
+							"path": [
+								"appointmentService"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequestFailure",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"jsonrpc\": \"2.0\",\r\n  \"id\": 2,\r\n  \"method\": \"appointmentRequest\",\r\n  \"params\": {\r\n    \"patient\": {\r\n      \"id\": \"jsmith\"\r\n    },\r\n    \"slot\": {\r\n      \"start\": \"1400\",\r\n      \"end\": \"1450\",\r\n      \"doctor\": \"antop\"\r\n    }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8011/appointmentService",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8011",
+							"path": [
+								"appointmentService"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "xml-rpc-demo",
+			"item": [
+				{
+					"name": "openSlotListRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<methodCall xmlns:ex=\"http://ws.apache.org/xmlrpc/namespaces/extensions\">\n    <methodName>Appointment.openSlotRequest</methodName>\n    <params>\n        <param>\n            <value>\n                <ex:serializable>rO0ABXNyAA1qYXZhLnRpbWUuU2VylV2EuhsiSLIMAAB4cHcHAwAAB+MKFHg=</ex:serializable>\n            </value>\n        </param>\n        <param>\n            <value>mjones</value>\n        </param>\n    </params>\n</methodCall>"
+						},
+						"url": {
+							"raw": "http://localhost:8012/xmlrpc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8012",
+							"path": [
+								"xmlrpc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<methodCall xmlns:ex=\"http://ws.apache.org/xmlrpc/namespaces/extensions\">\r\n    <methodName>org.antop.xmlrpc.service.AppointmentService.appointmentRequest</methodName>\r\n    <params>\r\n        <param>\r\n            <value>\r\n                <ex:serializable>\r\n                    rO0ABXNyABtvcmcuYW50b3AueG1scnBjLm1vZGVsLlNsb3SKqAx35vVeQwIAA0wABmRvY3RvcnQAEkxqYXZhL2xhbmcvU3RyaW5nO0wAA2VuZHQAFUxqYXZhL3RpbWUvTG9jYWxUaW1lO0wABXN0YXJ0cQB+AAJ4cHQABm1qb25lc3NyAA1qYXZhLnRpbWUuU2VylV2EuhsiSLIMAAB4cHcDBBDNeHNxAH4ABXcCBO94\r\n                </ex:serializable>\r\n            </value>\r\n        </param>\r\n        <param>\r\n            <value>\r\n                <ex:serializable>\r\n                    rO0ABXNyAB5vcmcuYW50b3AueG1scnBjLm1vZGVsLlBhdGllbnTemVxtdsaxqAIAAUwAAmlkdAASTGphdmEvbGFuZy9TdHJpbmc7eHB0AAZqc21pdGg=\r\n                </ex:serializable>\r\n            </value>\r\n        </param>\r\n    </params>\r\n</methodCall>"
+						},
+						"url": {
+							"raw": "http://localhost:8012/xmlrpc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8012",
+							"path": [
+								"xmlrpc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequestFailure",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<methodCall xmlns:ex=\"http://ws.apache.org/xmlrpc/namespaces/extensions\">\r\n    <methodName>org.antop.xmlrpc.service.AppointmentService.appointmentRequest</methodName>\r\n    <params>\r\n        <param>\r\n            <value>\r\n                <ex:serializable>\r\n                    rO0ABXNyABtvcmcuYW50b3AueG1scnBjLm1vZGVsLlNsb3SKqAx35vVeQwIAA0wABmRvY3RvcnQAEkxqYXZhL2xhbmcvU3RyaW5nO0wAA2VuZHQAFUxqYXZhL3RpbWUvTG9jYWxUaW1lO0wABXN0YXJ0cQB+AAJ4cHQABWFudG9wc3IADWphdmEudGltZS5TZXKVXYS6GyJIsgwAAHhwdwMEEM14c3EAfgAFdwIE73g=\r\n                </ex:serializable>\r\n            </value>\r\n        </param>\r\n        <param>\r\n            <value>\r\n                <ex:serializable>\r\n                    rO0ABXNyAB5vcmcuYW50b3AueG1scnBjLm1vZGVsLlBhdGllbnTemVxtdsaxqAIAAUwAAmlkdAASTGphdmEvbGFuZy9TdHJpbmc7eHB0AAZqc21pdGg=\r\n                </ex:serializable>\r\n            </value>\r\n        </param>\r\n    </params>\r\n</methodCall>"
+						},
+						"url": {
+							"raw": "http://localhost:8012/xmlrpc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8012",
+							"path": [
+								"xmlrpc"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d7cd622-5d03-4bb1-9f88-28c0ba322f42",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "243eb75c-e4f9-4838-9e93-7b8c8f5dade6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "soap-ws-demo",
+			"item": [
+				{
+					"name": "openSlotListRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:app=\"http://antop.org/appointment-service\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <app:openSlotListRequest>\r\n            <app:date>2019-01-02</app:date>\r\n            <app:doctor>mjones</app:doctor>\r\n        </app:openSlotListRequest>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>"
+						},
+						"url": {
+							"raw": "http://localhost:8013/ws/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"ws",
+								"appointment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:app=\"http://antop.org/appointment-service\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <app:appointmentRequest>\r\n            <app:slot>\r\n                <app:start>1400</app:start>\r\n                <app:end>1450</app:end>\r\n                <app:doctor>mjones</app:doctor>\r\n            </app:slot>\r\n            <app:patient>\r\n                <app:id>jsmith</app:id>\r\n            </app:patient>\r\n        </app:appointmentRequest>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>"
+						},
+						"url": {
+							"raw": "http://localhost:8013/ws/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"ws",
+								"appointment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequestFailure",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:app=\"http://antop.org/appointment-service\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <app:appointmentRequest>\r\n            <app:slot>\r\n                <app:start>1400</app:start>\r\n                <app:end>1450</app:end>\r\n                <app:doctor>antop</app:doctor>\r\n            </app:slot>\r\n            <app:patient>\r\n                <app:id>jsmith</app:id>\r\n            </app:patient>\r\n        </app:appointmentRequest>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>"
+						},
+						"url": {
+							"raw": "http://localhost:8013/ws/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"ws",
+								"appointment"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d7cd622-5d03-4bb1-9f88-28c0ba322f42",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "243eb75c-e4f9-4838-9e93-7b8c8f5dade6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "resources-demo",
+			"item": [
+				{
+					"name": "openSlotListRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<openSlotListRequest date=\"2019-08-01\"/>"
+						},
+						"url": {
+							"raw": "http://localhost:8021/doctors/mjones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8021",
+							"path": [
+								"doctors",
+								"mjones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<appointmentRequest>\r\n    <patient id=\"jsmith\"/>\r\n</appointmentRequest>"
+						},
+						"url": {
+							"raw": "http://localhost:8021/slots/1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8021",
+							"path": [
+								"slots",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequestFailure",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<appointmentRequest>\r\n    <patient id=\"jsmith\"/>\r\n</appointmentRequest>"
+						},
+						"url": {
+							"raw": "http://localhost:8021/slots/9999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8021",
+							"path": [
+								"slots",
+								"9999"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d7cd622-5d03-4bb1-9f88-28c0ba322f42",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "243eb75c-e4f9-4838-9e93-7b8c8f5dade6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "verbs-demo",
+			"item": [
+				{
+					"name": "openSlotListRequest",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8020/doctors/mjones/slots?date=20100104&status=open",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"doctors",
+								"mjones",
+								"slots"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "20100104"
+								},
+								{
+									"key": "status",
+									"value": "open"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<appointmentRequest>\r\n    <patient id=\"jsmith\"/>\r\n</appointmentRequest>"
+						},
+						"url": {
+							"raw": "http://localhost:8020/slots/1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"slots",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequestFailure",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<appointmentRequest>\r\n    <patient id=\"jsmith\"/>\r\n</appointmentRequest>"
+						},
+						"url": {
+							"raw": "http://localhost:8020/slots/9999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"slots",
+								"9999"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d7cd622-5d03-4bb1-9f88-28c0ba322f42",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "243eb75c-e4f9-4838-9e93-7b8c8f5dade6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "hateoas-demo",
+			"item": [
+				{
+					"name": "openSlotListRequest",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8030/doctors/mjones/slots?date=20100104&status=open",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8030",
+							"path": [
+								"doctors",
+								"mjones",
+								"slots"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "20100104"
+								},
+								{
+									"key": "status",
+									"value": "open"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<appointmentRequest>\r\n    <patient id=\"jsmith\"/>\r\n</appointmentRequest>"
+						},
+						"url": {
+							"raw": "http://localhost:8030/slots/1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8030",
+							"path": [
+								"slots",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "appointmentRequestFailure",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<appointmentRequest>\r\n    <patient id=\"jsmith\"/>\r\n</appointmentRequest>"
+						},
+						"url": {
+							"raw": "http://localhost:8030/slots/9999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8030",
+							"path": [
+								"slots",
+								"9999"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d7cd622-5d03-4bb1-9f88-28c0ba322f42",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "243eb75c-e4f9-4838-9e93-7b8c8f5dade6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "bank-api-demo",
+			"item": [
+				{
+					"name": "accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8033/accounts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8033",
+							"path": [
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8033/accounts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8033",
+							"path": [
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -27,12 +27,11 @@ class BankApiApplicationTests {
                 .andExpect(jsonPath("\$._embedded.accountList").isArray)
                 .andExpect(jsonPath("\$._embedded.accountList.size()").value(2))
                 .andExpect(jsonPath("\$._embedded.accountList[0]._links").isNotEmpty)
-        ;
     }
 
     @Test
     fun getAccount() {
-        val accountId = 1;
+        val accountId = 1
 
         mockMvc.perform(get("/accounts/$accountId"))
                 .andDo(print())
@@ -43,7 +42,6 @@ class BankApiApplicationTests {
                 .andExpect(jsonPath("\$._links.withdraw.href").isNotEmpty)
                 .andExpect(jsonPath("\$._links.transfer.href").isNotEmpty)
                 .andExpect(jsonPath("\$._links.close.href").isNotEmpty)
-        ;
     }
 
 }

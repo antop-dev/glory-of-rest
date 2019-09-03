@@ -54,7 +54,7 @@ public class ResourcesAppointmentTest {
     @Test
     public void appointmentRequest() throws Exception {
         mockMvc.perform(
-                post("/slots/2")
+                post("/slots/1234")
                         .accept(MediaType.APPLICATION_XML)
                         .contentType(MediaType.APPLICATION_XML)
                         .content("<appointmentRequest>\n" +

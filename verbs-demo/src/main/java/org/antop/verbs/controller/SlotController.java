@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
+
 @RestController
 public class SlotController {
     private final SlotService service;
@@ -21,7 +23,7 @@ public class SlotController {
     public ResponseEntity<?> slots(@PathVariable("id") int slotId, @RequestBody AppointmentRequest request) {
         try {
             Appointment appointment = service.appointment(slotId, request.getPatient().getId());
-            return ResponseEntity.ok(appointment);
+            return ResponseEntity.created(URI.create("/slots/" + appointment.getSlot().getId() + "/appointment")).body(appointment);
         } catch (Exception e) {
             AppointmentRequestFailure failure = new AppointmentRequestFailure(e.getMessage());
             return ResponseEntity.status(HttpStatus.CONFLICT).body(failure);

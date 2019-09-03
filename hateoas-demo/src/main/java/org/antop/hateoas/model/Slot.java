@@ -1,6 +1,7 @@
 package org.antop.hateoas.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.antop.hateoas.hateoas.HasLink;
 import org.antop.hateoas.adatper.LocalDateAdapter;
 import org.antop.hateoas.adatper.LocalTimeAdapter;
@@ -13,6 +14,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @XmlRootElement(name = "slot")
 @XmlAccessorType(XmlAccessType.FIELD)

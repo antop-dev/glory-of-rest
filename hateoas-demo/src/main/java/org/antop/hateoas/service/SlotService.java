@@ -14,7 +14,7 @@ public class SlotService {
 
     public Appointment appointment(int slotId, String patient) {
         String doctor = slotId == 9999 ? "antop" : "mjones";
-        Slot slot = Slot.of(slotId, LocalDate.of(2010, 10, 04),
+        Slot slot = Slot.of(slotId, LocalDate.of(2010, 10, 4),
                 LocalTime.of(14, 0),
                 LocalTime.of(14, 50), doctor);
 

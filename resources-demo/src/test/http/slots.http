@@ -6,7 +6,7 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-POST http://localhost:8021/slots/3
+POST http://localhost:8021/slots/1234
 Content-Type: application/xml
 Accept: application/xml
 
@@ -16,7 +16,7 @@ Accept: application/xml
 
 ###
 
-POST http://localhost:8021/slots/11
+POST http://localhost:8021/slots/9999
 Content-Type: application/xml
 Accept: application/xml
 

@@ -8,12 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static org.springframework.http.MediaType.APPLICATION_XML;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,7 +34,7 @@ public class VerbsApplicationTest {
 
         mockMvc
                 .perform(builder)
-                .andDo(MockMvcResultHandlers.print())
+                .andDo(print())
                 .andExpect(xpath("//openSlotList/slot").nodeCount(2))
                 .andExpect(xpath("//openSlotList/slot[1]/@id").string("1234"))
                 .andExpect(xpath("//openSlotList/slot[1]/@start").string("1400"))
@@ -52,7 +52,7 @@ public class VerbsApplicationTest {
         int slotId = 1234;
         String patient = "jsmith";
 
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/slots/" + slotId)
+        MockHttpServletRequestBuilder builder = post("/slots/" + slotId)
                 .accept(APPLICATION_XML)
                 .contentType(APPLICATION_XML)
                 .content("<appointmentRequest>\n" +
@@ -61,7 +61,9 @@ public class VerbsApplicationTest {
 
         mockMvc
                 .perform(builder)
-                .andDo(MockMvcResultHandlers.print())
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(header().string("Location", "/slots/" + slotId + "/appointment"))
                 .andExpect(xpath("//appointment").exists())
                 .andExpect(xpath("//appointment/slot").exists())
                 .andExpect(xpath("//appointment/slot/@id").string("" + slotId))
@@ -74,7 +76,7 @@ public class VerbsApplicationTest {
         int slotId = 9999;
         String patient = "jsmith";
 
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/slots/" + slotId)
+        MockHttpServletRequestBuilder builder = post("/slots/" + slotId)
                 .accept(APPLICATION_XML)
                 .contentType(APPLICATION_XML)
                 .content("<appointmentRequest>\n" +
@@ -83,7 +85,8 @@ public class VerbsApplicationTest {
 
         mockMvc
                 .perform(builder)
-                .andDo(MockMvcResultHandlers.print())
+                .andDo(print())
+                .andExpect(status().isConflict())
                 .andExpect(xpath("//appointment").doesNotExist())
                 .andExpect(xpath("//appointmentRequestFailure").exists())
                 .andExpect(xpath("//appointmentRequestFailure/reason").string("Slot not available"))

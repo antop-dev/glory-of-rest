@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,22 +18,15 @@ public class SlotRepository {
 
     @PostConstruct
     void init() {
-        int sequence = 0;
-        String[] doctors = new String[]{"mjones", "antop"};
-
-        for (String doctor : doctors) {
-            for (int hour = 9; hour < 18; hour++) {
-                Slot slot = Slot.of(sequence++, LocalTime.of(hour, 0), LocalTime.of(hour, 40), doctor);
-                slots.add(slot);
-            }
-        }
+        List<Slot> slots = Arrays.asList(
+                Slot.of(1234, LocalTime.of(14, 0), LocalTime.of(14, 50), "mjones"),
+                Slot.of(5678, LocalTime.of(16, 0), LocalTime.of(16, 50), "mjones"),
+                Slot.of(9999, LocalTime.of(16, 0), LocalTime.of(16, 50), "antop")
+        );
+        this.slots.addAll(slots);
     }
 
     public List<Slot> getSlots(String doctor, LocalDate date) {
-        if (doctor.equals("antop")) {
-            return Collections.emptyList();
-        }
-
         return slots.stream().filter(it -> it.getDoctor().equals(doctor)).collect(Collectors.toList());
     }
 

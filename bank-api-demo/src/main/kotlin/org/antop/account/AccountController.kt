@@ -26,7 +26,7 @@ class AccountController(val accountService: AccountService) {
     }
 
     private fun addLink(account: Account) = account.let {
-        val r = Resource(it);
+        val r = Resource(it)
         r.add(linkTo(ControllerLinkBuilder.methodOn(AccountController::class.java).getAccount(it.id)).withSelfRel())
         r.add(linkTo(ControllerLinkBuilder.methodOn(AccountController::class.java).deposit(it.id)).withRel("deposit"))
         r.add(linkTo(ControllerLinkBuilder.methodOn(AccountController::class.java).withdraw(it.id)).withRel("withdraw"))
