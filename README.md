@@ -72,7 +72,7 @@ Demo
 
 * [hateoas-demo](./hateoas-demo)
 * [bank-api-demo](./bank-api-demo)
-* [spring-data-rest-demo](./spring-data-rest-demo) (미완성)
+* [spring-data-rest-demo](./spring-data-rest-demo)
 
 ## Reference
 
