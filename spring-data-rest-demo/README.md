@@ -1,5 +1,7 @@
 # Spring data 
 
+Spring Data JPA<sup>`ava Persistent API`</sup>에 `Repository`에 관련된 REST<sup>`Representational State Transfer`</sup> API를 바로 만들어준다. +_+!
+
 ## H2 Database Console
 
 * URL: http://localhost:8037/h2-console
