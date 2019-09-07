@@ -35,6 +35,6 @@ public interface AppointmentService {
     @JsonRpcErrors({
             @JsonRpcError(exception = SlotNotAvailableException.class, code = 404, message = "Slot not available")
     })
-    Appointment appointmentRequest(@JsonRpcParam(value = "slot") Slot slot, @JsonRpcParam(value = "patient") Patient patient) throws SlotNotAvailableException;
+    Appointment appointmentRequest(@JsonRpcParam(value = "slot") Slot slot, @JsonRpcParam(value = "patient") Patient patient);
 
 }

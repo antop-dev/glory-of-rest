@@ -20,7 +20,7 @@ public class SlotController {
     }
 
     @PostMapping(path = "/slots/{id}")
-    public ResponseEntity<?> slots(@PathVariable("id") int slotId, @RequestBody AppointmentRequest request) {
+    public ResponseEntity<AppointmentRequest> slots(@PathVariable("id") int slotId, @RequestBody AppointmentRequest request) {
         try {
             Appointment appointment = service.appointment(slotId, request.getPatient().getId());
             return ResponseEntity.created(URI.create("/slots/" + appointment.getSlot().getId() + "/appointment")).body(appointment);

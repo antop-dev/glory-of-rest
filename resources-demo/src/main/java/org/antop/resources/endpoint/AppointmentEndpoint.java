@@ -11,14 +11,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -40,7 +44,7 @@ public class AppointmentEndpoint {
     @PostMapping(path = "/doctors/{id}",
             consumes = {MediaType.TEXT_XML_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.TEXT_XML_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public Object doctors(@PathVariable("id") String id, @RequestBody String payload) throws Exception {
+    public Object doctors(@PathVariable("id") String id, @RequestBody String payload) throws IOException, SAXException, ParserConfigurationException, InvocationTargetException, IllegalAccessException {
         Element root = parseXml(payload);
         String methodName = root.getNodeName(); // root node name = method name
         Method method = findMethod(doctorService.getClass(), methodName);
@@ -57,7 +61,7 @@ public class AppointmentEndpoint {
     @PostMapping(path = "/slots/{id}",
             consumes = {MediaType.TEXT_XML_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.TEXT_XML_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public Object slots(@PathVariable("id") int id, @RequestBody String payload) throws Exception {
+    public Object slots(@PathVariable("id") int id, @RequestBody String payload) throws IOException, SAXException, ParserConfigurationException, InvocationTargetException, IllegalAccessException {
         Element root = parseXml(payload);
         String methodName = root.getNodeName(); // root node name = method name
         Method method = findMethod(slotService.getClass(), methodName);
@@ -65,16 +69,21 @@ public class AppointmentEndpoint {
         if (Objects.nonNull(method)) {
             String patient = root.getElementsByTagName("patient").item(0).getAttributes().getNamedItem("id").getNodeValue();
             Optional<Appointment> optional = (Optional<Appointment>) method.invoke(slotService, id, patient);
-
-            optional.orElseThrow(SlotNotAvailableException::new);
-            return optional.get();
+            return optional.orElseThrow(SlotNotAvailableException::new);
         }
         throw new NotFoundOperationException(methodName);
     }
 
     private Element parseXml(String xml) throws ParserConfigurationException, IOException, SAXException {
-        InputSource is = new InputSource(new StringReader(xml));
-        return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(is).getDocumentElement();
+        try (Reader reader = new StringReader(xml)) {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            // https://find-sec-bugs.github.io/bugs.htm#XXE_DOCUMENT
+            factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+            InputSource is = new InputSource(reader);
+            Document document = factory.newDocumentBuilder().parse(is);
+            return document.getDocumentElement();
+        }
     }
 
     private Method findMethod(Class<?> cl, String methodName) {

@@ -13,11 +13,13 @@ import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
 import java.util.List;
 
@@ -62,10 +64,18 @@ public class AppointmentEndpoint {
 
     // XML의 루트 태그명을 가져온다
     private String getNodeName(String xml) throws ParserConfigurationException, IOException, SAXException {
-        InputSource is = new InputSource(new StringReader(xml));
-        Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(is);
-        Element root = document.getDocumentElement();
-        return root.getNodeName();
+        try (Reader reader = new StringReader(xml)) {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            // https://find-sec-bugs.github.io/bugs.htm#XXE_DOCUMENT
+            factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+            InputSource is = new InputSource(new StringReader(xml));
+            Document document = factory.newDocumentBuilder().parse(is);
+            Element root = document.getDocumentElement();
+
+            return root.getNodeName();
+        }
+
     }
 
 }

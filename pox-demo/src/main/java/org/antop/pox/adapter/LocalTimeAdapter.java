@@ -5,15 +5,15 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class LocalTimeAdapter extends XmlAdapter<String, LocalTime> {
-    private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HHmm");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
 
     @Override
     public LocalTime unmarshal(String v) {
-        return LocalTime.parse(v, FORMATTER);
+        return LocalTime.parse(v, formatter);
     }
 
     @Override
     public String marshal(LocalTime v) {
-        return v.format(FORMATTER);
+        return v.format(formatter);
     }
 }

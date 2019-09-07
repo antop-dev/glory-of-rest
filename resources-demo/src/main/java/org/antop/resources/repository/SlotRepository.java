@@ -18,12 +18,11 @@ public class SlotRepository {
 
     @PostConstruct
     void init() {
-        List<Slot> slots = Arrays.asList(
+        slots.addAll(Arrays.asList(
                 Slot.of(1234, LocalTime.of(14, 0), LocalTime.of(14, 50), "mjones"),
                 Slot.of(5678, LocalTime.of(16, 0), LocalTime.of(16, 50), "mjones"),
                 Slot.of(9999, LocalTime.of(16, 0), LocalTime.of(16, 50), "antop")
-        );
-        this.slots.addAll(slots);
+        ));
     }
 
     public List<Slot> getSlots(String doctor, LocalDate date) {

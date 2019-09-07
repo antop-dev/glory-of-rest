@@ -25,7 +25,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment appointmentRequest(Slot slot, Patient patient) throws SlotNotAvailableException {
+    public Appointment appointmentRequest(Slot slot, Patient patient) {
         Appointment appointment = Appointment.of(slot, patient);
         if (slot.getDoctor().equals("antop")) {
             throw new SlotNotAvailableException();
